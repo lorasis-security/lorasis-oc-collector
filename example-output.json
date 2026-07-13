@@ -1,0 +1,2130 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "collected_at": "2026-07-13T17:48:37Z",
+    "cli": "oc",
+    "cli_version": {
+      "clientVersion": {
+        "major": "",
+        "minor": "",
+        "gitVersion": "4.21.9",
+        "gitCommit": "9d9df34c46c9deba8c291a2a084de5724c0bd820",
+        "gitTreeState": "clean",
+        "buildDate": "2026-04-15T06:13:57Z",
+        "goVersion": "go1.26.2",
+        "compiler": "gc",
+        "platform": "darwin/arm64"
+      },
+      "kustomizeVersion": "v5.7.1"
+    }
+  },
+  "rbac_preflight": [
+    {
+      "check": "get clusterversions.config.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get infrastructures.config.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get clusteroperators.config.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get networks.config.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get proxies.config.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get images.config.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get securitycontextconstraints.security.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "get machineconfigs.machineconfiguration.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "list subscriptions.operators.coreos.com -A",
+      "allowed": true
+    },
+    {
+      "check": "list clusterserviceversions.operators.coreos.com -A",
+      "allowed": true
+    },
+    {
+      "check": "list nodes",
+      "allowed": true
+    },
+    {
+      "check": "list namespaces",
+      "allowed": true
+    },
+    {
+      "check": "list storageclasses.storage.k8s.io",
+      "allowed": true
+    },
+    {
+      "check": "list networkpolicies.networking.k8s.io -A",
+      "allowed": true
+    },
+    {
+      "check": "list egressfirewalls.k8s.ovn.org -A",
+      "allowed": true
+    },
+    {
+      "check": "list clusterroles.rbac.authorization.k8s.io",
+      "allowed": true
+    },
+    {
+      "check": "list clusterrolebindings.rbac.authorization.k8s.io",
+      "allowed": true
+    },
+    {
+      "check": "list resourcequotas -A",
+      "allowed": true
+    },
+    {
+      "check": "list limitranges -A",
+      "allowed": true
+    },
+    {
+      "check": "list clusterresourcequotas.quota.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "list pods -A",
+      "allowed": true
+    },
+    {
+      "check": "list imagecontentsourcepolicies.operator.openshift.io",
+      "allowed": true
+    },
+    {
+      "check": "list imagedigestmirrorsets.config.openshift.io",
+      "allowed": true
+    }
+  ],
+  "cluster_version": {
+    "status": "ok",
+    "data": {
+      "version": "4.22.1",
+      "channel": "stable-4.22",
+      "capabilities": [
+        "Build",
+        "Console",
+        "DeploymentConfig",
+        "ImageRegistry",
+        "Ingress",
+        "MachineAPI",
+        "OperatorLifecycleManager",
+        "marketplace",
+        "openshift-samples"
+      ],
+      "update_history": [
+        {
+          "version": "4.22.1",
+          "state": "Completed"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "status": "ok",
+    "data": {
+      "platform": "None",
+      "control_plane_topology": "SingleReplica",
+      "infrastructure_topology": "SingleReplica",
+      "cpu_partitioning": "None"
+    }
+  },
+  "cluster_operators": {
+    "status": "ok",
+    "data": [
+      {
+        "name": "authentication",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "config-operator",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "console",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "control-plane-machine-set",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "dns",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "etcd",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "image-registry",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "ingress",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "kube-apiserver",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "kube-controller-manager",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "kube-scheduler",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "kube-storage-version-migrator",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "machine-api",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "machine-approver",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "machine-config",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "marketplace",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "network",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "openshift-apiserver",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "openshift-controller-manager",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "openshift-samples",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "operator-lifecycle-manager",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "operator-lifecycle-manager-catalog",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "operator-lifecycle-manager-packageserver",
+        "version": "4.22.1",
+        "available": "True"
+      },
+      {
+        "name": "service-ca",
+        "version": "4.22.1",
+        "available": "True"
+      }
+    ]
+  },
+  "operators": {
+    "subscriptions": {
+      "status": "ok",
+      "data": []
+    },
+    "cluster_service_versions": {
+      "status": "ok",
+      "data": [
+        {
+          "name": "packageserver",
+          "version": "0.0.1-snapshot",
+          "phase": "Succeeded"
+        }
+      ]
+    }
+  },
+  "security": {
+    "scc_definitions": {
+      "status": "ok",
+      "data": [
+        {
+          "name": "anyuid",
+          "priority": 10,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "RunAsAny",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "MKNOD"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 1,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "hostaccess",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": true,
+          "allow_host_pid": true,
+          "allow_host_ipc": true,
+          "allow_host_ports": true,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "hostPath",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "KILL",
+            "MKNOD",
+            "SETUID",
+            "SETGID"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "hostmount-anyuid",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "RunAsAny",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "hostPath",
+            "image",
+            "nfs",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "MKNOD"
+          ],
+          "granted_users_count": 1,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "hostmount-anyuid-v2",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "RunAsAny",
+          "selinux_strategy": "RunAsAny",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "hostPath",
+            "image",
+            "nfs",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "MKNOD"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "hostnetwork",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": true,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": true,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "KILL",
+            "MKNOD",
+            "SETUID",
+            "SETGID"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "hostnetwork-v2",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": true,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": true,
+          "allow_privilege_escalation": null,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [
+            "NET_BIND_SERVICE"
+          ],
+          "required_drop_capabilities": [
+            "ALL"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "hostpath-provisioner",
+          "priority": null,
+          "allow_privileged": true,
+          "allow_host_network": true,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "RunAsAny",
+          "selinux_strategy": "RunAsAny",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "*"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "KILL",
+            "MKNOD",
+            "SETUID",
+            "SETGID"
+          ],
+          "granted_users_count": 1,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "machine-api-termination-handler",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": true,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "RunAsAny",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "downwardAPI",
+            "hostPath"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "KILL",
+            "MKNOD",
+            "SETUID",
+            "SETGID"
+          ],
+          "granted_users_count": 1,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "nested-container",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [
+            "SETUID",
+            "SETGID"
+          ],
+          "required_drop_capabilities": [],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "nonroot",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsNonRoot",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "KILL",
+            "MKNOD",
+            "SETUID",
+            "SETGID"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "nonroot-v2",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": null,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsNonRoot",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [
+            "NET_BIND_SERVICE"
+          ],
+          "required_drop_capabilities": [
+            "ALL"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "privileged",
+          "priority": null,
+          "allow_privileged": true,
+          "allow_host_network": true,
+          "allow_host_pid": true,
+          "allow_host_ipc": true,
+          "allow_host_ports": true,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "RunAsAny",
+          "selinux_strategy": "RunAsAny",
+          "fsgroup_strategy": "RunAsAny",
+          "volumes": [
+            "*"
+          ],
+          "allowed_capabilities": [
+            "*"
+          ],
+          "required_drop_capabilities": [],
+          "granted_users_count": 2,
+          "granted_groups_count": 3,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "restricted",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": true,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [],
+          "required_drop_capabilities": [
+            "KILL",
+            "MKNOD",
+            "SETUID",
+            "SETGID"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "restricted-v2",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": null,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [
+            "NET_BIND_SERVICE"
+          ],
+          "required_drop_capabilities": [
+            "ALL"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        },
+        {
+          "name": "restricted-v3",
+          "priority": null,
+          "allow_privileged": false,
+          "allow_host_network": false,
+          "allow_host_pid": false,
+          "allow_host_ipc": false,
+          "allow_host_ports": false,
+          "allow_privilege_escalation": null,
+          "read_only_root_fs": false,
+          "run_as_user_strategy": "MustRunAsRange",
+          "selinux_strategy": "MustRunAs",
+          "fsgroup_strategy": "MustRunAs",
+          "volumes": [
+            "configMap",
+            "csi",
+            "downwardAPI",
+            "emptyDir",
+            "ephemeral",
+            "image",
+            "persistentVolumeClaim",
+            "projected",
+            "secret"
+          ],
+          "allowed_capabilities": [
+            "NET_BIND_SERVICE"
+          ],
+          "required_drop_capabilities": [
+            "ALL"
+          ],
+          "granted_users_count": 0,
+          "granted_groups_count": 0,
+          "granted_to_all_authenticated": false
+        }
+      ]
+    },
+    "scc_usage": {
+      "status": "ok",
+      "data": {
+        "pods_per_scc": {
+          "anyuid": 2,
+          "hostaccess": 1,
+          "hostnetwork": 2,
+          "hostnetwork-v2": 1,
+          "hostpath-provisioner": 1,
+          "nonroot-v2": 5,
+          "privileged": 6,
+          "restricted-v2": 28,
+          "restricted-v3": 3
+        }
+      }
+    },
+    "scc_rbac_grants": {
+      "status": "ok",
+      "data": {
+        "granted_to_all_authenticated": [
+          "restricted-v2",
+          "restricted-v3"
+        ],
+        "granted_to_all_service_accounts": []
+      }
+    },
+    "pod_security": {
+      "status": "ok",
+      "data": {
+        "namespace_count": {
+          "platform": 64,
+          "user": 3
+        },
+        "enforce_levels": {
+          "platform": {
+            "baseline": 2,
+            "privileged": 31,
+            "restricted": 4,
+            "unset": 27
+          },
+          "user": {
+            "restricted": 2,
+            "unset": 1
+          }
+        },
+        "warn_levels": {
+          "platform": {
+            "baseline": 2,
+            "privileged": 30,
+            "restricted": 3,
+            "unset": 29
+          },
+          "user": {
+            "privileged": 1,
+            "restricted": 2
+          }
+        },
+        "audit_levels": {
+          "platform": {
+            "baseline": 2,
+            "privileged": 30,
+            "restricted": 3,
+            "unset": 29
+          },
+          "user": {
+            "privileged": 1,
+            "restricted": 2
+          }
+        }
+      }
+    }
+  },
+  "network": {
+    "cluster_network": {
+      "status": "ok",
+      "data": {
+        "cni_plugin": "OVNKubernetes",
+        "cluster_network": [
+          {
+            "cidr": "10.217.0.0/22",
+            "hostPrefix": 23
+          }
+        ],
+        "service_network": [
+          "10.217.4.0/23"
+        ],
+        "cluster_network_mtu": 1400
+      }
+    },
+    "network_policies": {
+      "status": "ok",
+      "data": {
+        "total": 107,
+        "namespaces_with_policies": 44,
+        "policies": [
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 4,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 3,
+            "egress_rule_count": 3,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress",
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 2,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 4,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 4,
+            "egress_rule_count": 4,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 4,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress",
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 3,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 2,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 0,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 3,
+            "egress_rule_count": 3,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 3,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 3,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 1,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": true,
+            "ingress_rule_count": 0,
+            "egress_rule_count": 0,
+            "is_default_deny": true
+          },
+          {
+            "policy_types": [
+              "Ingress",
+              "Egress"
+            ],
+            "selects_all_pods": false,
+            "ingress_rule_count": 1,
+            "egress_rule_count": 2,
+            "is_default_deny": false
+          }
+        ]
+      }
+    },
+    "egress_network_policies": {
+      "status": "api_not_found",
+      "data": null,
+      "message": "API not present on this cluster"
+    },
+    "egress_firewalls": {
+      "status": "ok",
+      "data": {
+        "total": 0,
+        "rules_total": 0
+      }
+    }
+  },
+  "storage_classes": {
+    "status": "ok",
+    "data": [
+      {
+        "name": "crc-csi-hostpath-provisioner",
+        "provisioner": "kubevirt.io.hostpath-provisioner",
+        "reclaim_policy": "Retain",
+        "volume_binding_mode": "WaitForFirstConsumer",
+        "allow_volume_expansion": false,
+        "is_default": true,
+        "parameter_keys": [
+          "storagePool"
+        ]
+      }
+    ]
+  },
+  "nodes": {
+    "status": "ok",
+    "data": [
+      {
+        "id": "node-0",
+        "roles": [
+          "control-plane",
+          "master",
+          "worker"
+        ],
+        "architecture": "arm64",
+        "os_image": "Red Hat Enterprise Linux CoreOS 9.8.20260605-0 (Plow)",
+        "kernel_version": "5.14.0-687.13.1.el9_8.aarch64",
+        "kubelet_version": "v1.35.5",
+        "container_runtime": "cri-o://1.35.4-2.rhaos4.22.git6479b5e.el9",
+        "capacity": {
+          "cpu": "6",
+          "memory": "14280336Ki",
+          "pods": "250"
+        },
+        "allocatable": {
+          "cpu": "5800m",
+          "memory": "13819536Ki"
+        },
+        "instance_type": null,
+        "zone": null,
+        "region": null
+      }
+    ]
+  },
+  "topology": {
+    "status": "ok",
+    "data": {
+      "total_nodes": 1,
+      "control_plane_count": 1,
+      "infra_count": 0,
+      "worker_count": 1,
+      "dedicated_worker_count": 0,
+      "ha_classification": "single-node",
+      "control_plane_schedulable": true,
+      "infra_separated_from_workers": false,
+      "infra_nodes_tainted": null,
+      "zone_spread": {
+        "distinct_zone_count": 1,
+        "nodes_per_zone": {
+          "unlabeled": 1
+        }
+      },
+      "distinct_region_count": 1
+    }
+  },
+  "quotas": {
+    "resource_quotas": {
+      "status": "ok",
+      "data": {
+        "total": 3,
+        "namespaces_with_quotas": 3,
+        "distinct_specs": [
+          {
+            "spec": {
+              "hard": {
+                "count/daemonsets.apps": "0",
+                "count/deployments.apps": "0",
+                "limits.cpu": "0",
+                "limits.memory": "0",
+                "pods": "0"
+              },
+              "scopes": [],
+              "has_scope_selector": false
+            },
+            "applied_count": 1
+          },
+          {
+            "spec": {
+              "hard": {
+                "limits.cpu": "8",
+                "limits.memory": "16Gi",
+                "pods": "50",
+                "requests.cpu": "4",
+                "requests.memory": "8Gi"
+              },
+              "scopes": [],
+              "has_scope_selector": false
+            },
+            "applied_count": 2
+          }
+        ]
+      }
+    },
+    "limit_ranges": {
+      "status": "ok",
+      "data": {
+        "total": 2,
+        "distinct_specs": [
+          {
+            "spec": {
+              "limits": [
+                {
+                  "default": {
+                    "cpu": "500m",
+                    "memory": "512Mi"
+                  },
+                  "defaultRequest": {
+                    "cpu": "100m",
+                    "memory": "128Mi"
+                  },
+                  "type": "Container"
+                }
+              ]
+            },
+            "applied_count": 2
+          }
+        ]
+      }
+    },
+    "cluster_resource_quotas": {
+      "status": "ok",
+      "data": {
+        "total": 0,
+        "distinct_specs": []
+      }
+    }
+  },
+  "environment": {
+    "fips": {
+      "status": "ok",
+      "data": {
+        "fips_enabled": false
+      }
+    },
+    "proxy": {
+      "status": "ok",
+      "data": {
+        "http_proxy_configured": false,
+        "https_proxy_configured": false,
+        "no_proxy_entry_count": 0,
+        "trusted_ca_configured": false
+      }
+    },
+    "image_config": {
+      "status": "ok",
+      "data": {
+        "allowed_registries_count": 0,
+        "blocked_registries_count": 0,
+        "insecure_registries_count": 0,
+        "additional_trusted_ca": true
+      }
+    },
+    "image_content_source_policies": {
+      "status": "ok",
+      "data": {
+        "count": 0
+      }
+    },
+    "image_digest_mirror_sets": {
+      "status": "ok",
+      "data": {
+        "count": 0
+      }
+    },
+    "image_tag_mirror_sets": {
+      "status": "ok",
+      "data": {
+        "count": 0
+      }
+    },
+    "operator_hub": {
+      "status": "ok",
+      "data": {
+        "default_sources_disabled": false
+      }
+    }
+  }
+}
