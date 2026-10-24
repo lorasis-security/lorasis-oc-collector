@@ -17,7 +17,7 @@
 #
 set -uo pipefail  # no -e: a failing section becomes a labeled gap, not an abort
 
-SCHEMA_VERSION="1.1.0"
+SCHEMA_VERSION="1.1.1"
 
 if command -v oc >/dev/null 2>&1; then CLI=oc
 elif command -v kubectl >/dev/null 2>&1; then CLI=kubectl
@@ -32,15 +32,6 @@ fi
 
 WORKDIR="$(mktemp -d)"
 trap 'rm -rf "$WORKDIR"' EXIT
-
-# Error text can embed the executing identity (User "...") or the API
-# server address; strip both before anything reaches the output.
-redact() {
-  sed -E \
-    -e 's/[Uu]ser "[^"]*"/user "[redacted]"/g' \
-    -e 's~[a-zA-Z][a-zA-Z0-9+.-]*://[^[:space:]"]+~[redacted-url]~g' \
-    -e 's/([0-9]{1,3}\.){3}[0-9]{1,3}(:[0-9]+)?/[redacted-address]/g'
-}
 
 # fetch <outfile> <get-args...>
 # Writes {status, data}; status: ok | forbidden | api_not_found | error.
@@ -59,11 +50,12 @@ fetch() {
       *"the server doesn't have a resource type"*|*"could not find the requested resource"*|*NotFound*|*"not found"*)
                                                  status="api_not_found" ;;
     esac
-    # Fixed messages for the expected statuses; anything else is redacted.
+    # Arbitrary diagnostics cannot be reliably redacted, especially after
+    # truncation. Keep classification local and emit only fixed messages.
     case "$status" in
       forbidden)     msg="read access denied for the executing account (see rbac_preflight)" ;;
       api_not_found) msg="API not present on this cluster" ;;
-      *)             msg="$(printf '%s' "$raw" | redact)" ;;
+      *)             msg="resource read failed; inspect the CLI locally" ;;
     esac
     jq -n --arg s "$status" --arg m "$msg" '{status:$s, data:null, message:$m}' > "$out"
   fi
@@ -77,8 +69,8 @@ section() {
   local name="$1" filter="$2" in="$3"
   jq "if .status == \"ok\" then {status:\"ok\", data:(.data | ${filter})} else . end" \
     "$in" > "$WORKDIR/$name.json" 2>"$WORKDIR/$name.err" \
-    || jq -n --arg m "$(head -c 300 "$WORKDIR/$name.err" | redact)" \
-         '{status:"error", data:null, message:("jq filter failed: " + $m)}' > "$WORKDIR/$name.json"
+    || jq -n '{status:"error", data:null, message:"section transformation failed"}' \
+         > "$WORKDIR/$name.json"
   # An empty fragment would silently drop the section; label it instead.
   [ -s "$WORKDIR/$name.json" ] \
     || jq -n '{status:"error", data:null, message:"section produced no output"}' > "$WORKDIR/$name.json"
@@ -206,13 +198,16 @@ section scc_definitions '
 # {scc: pod_count}. Pod names, namespaces and images stay on the cluster.
 if scc_usage_raw="$("$CLI" get pods -A \
   -o jsonpath='{range .items[*]}{.metadata.annotations.openshift\.io/scc}{"\n"}{end}' 2>"$WORKDIR/scc.err")"; then
-  printf '%s\n' "$scc_usage_raw" | grep -v '^$' | sort | uniq -c \
-    | jq -R -n '[inputs | capture("^ *(?<n>[0-9]+) (?<scc>.+)$") | {(.scc): (.n|tonumber)}] | add // {}' \
-    | jq '{status:"ok", data:{pods_per_scc: .}}' > "$WORKDIR/scc_usage.json"
+  {
+    printf '%s\n' "$scc_usage_raw" | sed '/^$/d' | sort | uniq -c \
+      | jq -R -n '[inputs | capture("^ *(?<n>[0-9]+) (?<scc>.+)$") | {(.scc): (.n|tonumber)}] | add // {}' \
+      | jq '{status:"ok", data:{pods_per_scc: .}}' > "$WORKDIR/scc_usage.json"
+  } 2>"$WORKDIR/scc_transform.err" \
+    || jq -n '{status:"error", data:null, message:"section transformation failed"}' > "$WORKDIR/scc_usage.json"
 else
   case "$(head -c 300 "$WORKDIR/scc.err")" in
     *[Ff]orbidden*) s=forbidden; msg="read access denied for the executing account (see rbac_preflight)" ;;
-    *)              s=error;     msg="$(head -c 300 "$WORKDIR/scc.err" | redact)" ;;
+    *)              s=error;     msg="resource read failed; inspect the CLI locally" ;;
   esac
   jq -n --arg s "$s" --arg m "$msg" '{status:$s, data:null, message:$m}' > "$WORKDIR/scc_usage.json"
 fi
@@ -243,7 +238,8 @@ if jq -e '.status=="ok"' "$WORKDIR/raw_roles.json" >/dev/null \
     {status: "ok", data: {
        granted_to_all_authenticated: grantedTo("system:authenticated"),
        granted_to_all_service_accounts: grantedTo("system:serviceaccounts")
-    }}' > "$WORKDIR/scc_rbac_grants.json"
+    }}' > "$WORKDIR/scc_rbac_grants.json" 2>"$WORKDIR/scc_rbac.err" \
+    || jq -n '{status:"error", data:null, message:"section transformation failed"}' > "$WORKDIR/scc_rbac_grants.json"
 else
   jq -s '{status: (map(.status) | if index("forbidden") then "forbidden"
                    elif index("api_not_found") then "api_not_found" else "error" end),
