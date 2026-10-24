@@ -1,0 +1,16 @@
+.tools/
+.local/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+!.env.*.example
+.kube/
+/kubeconfig
+*.kubeconfig
+/cluster-shape*.json
+/collector-output*.json
+/outputs/
+*.log
+.DS_Store

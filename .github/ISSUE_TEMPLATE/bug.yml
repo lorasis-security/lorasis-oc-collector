@@ -1,0 +1,23 @@
+name: Collector bug
+description: Report a non-sensitive bug using synthetic information only.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include cluster output, identities, kubeconfigs or raw diagnostics.
+        Follow SECURITY.md for sensitive reports. Link existing internal work
+        rather than duplicating it here.
+  - type: input
+    id: version
+    attributes:
+      label: Collector revision
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Synthetic reproduction and expected behavior
+      description: Include only invented examples and safe tool versions.
+    validations:
+      required: true
