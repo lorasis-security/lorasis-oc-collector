@@ -1,0 +1,47 @@
+name: quality
+
+on:
+  pull_request:
+    branches: [dev]
+  push:
+    branches: [dev]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  quality:
+    name: Collector quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12.7'
+      - name: Install verified development tools
+        run: make setup
+      - name: Run offline checks
+        shell: bash
+        run: |
+          mkdir -p .local/readiness
+          start=$SECONDS
+          result=0
+          make verify || result=$?
+          printf '{"elapsed_seconds":%s,"exit_code":%s}\n' \
+            "$((SECONDS-start))" "$result" > .local/readiness/checks.json
+          exit "$result"
+      - name: Preserve check timing only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: collector-check-timing
+          path: .local/readiness/checks.json
+          if-no-files-found: warn
+          retention-days: 14

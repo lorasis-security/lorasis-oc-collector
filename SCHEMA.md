@@ -1,8 +1,10 @@
 # cluster-shape.json: output schema
 
-Schema version: 1.1.0 (`meta.schema_version`). Consumers must tolerate
+Schema version: 1.1.1 (`meta.schema_version`). Consumers must tolerate
 added fields within a major version; removed/renamed fields bump the major.
 1.1.0 adds the `topology` and `security.scc_rbac_grants` sections (additive).
+1.1.1 uses fixed error messages instead of partially redacted diagnostics.
+No fields or status values changed. The historical example remains at 1.1.0.
 
 ## Section wrapper
 
@@ -12,9 +14,8 @@ Every section (marked `§` below) is wrapped as:
 {
   "status": "ok | forbidden | api_not_found | error",
   "data":   <section payload, null unless status == "ok">,
-  "message": "<present only when status != ok: fixed reason text for
-               forbidden/api_not_found; for error, CLI error text with
-               identities, URLs and IP addresses redacted>"
+  "message": "<present only when status != ok: fixed diagnostic category;
+               raw CLI and jq error text is never embedded>"
 }
 ```
 
@@ -26,7 +27,7 @@ Consumers MUST branch on `status` before reading `data`. `forbidden` and
 ```
 {
   meta: {
-    schema_version: string        // "1.1.0"
+    schema_version: string        // "1.1.1"
     collected_at:   string        // UTC ISO-8601
     cli:            "oc" | "kubectl"
     cli_version:    object        // raw `<cli> version --client -o json`, {} if unavailable

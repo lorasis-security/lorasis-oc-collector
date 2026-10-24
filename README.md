@@ -34,13 +34,17 @@ server. It never writes to the cluster.
 | `environment` | FIPS flag, proxy configured yes/no, registry restriction counts, mirror set counts, OperatorHub source flag | Booleans and counts. Proxy URLs and registry hostnames are not collected. |
 | `rbac_preflight` | `oc auth can-i` result for each resource the script reads | A check of the executing account's own permissions, so gaps in the output explain themselves. |
 
-The output never contains Secrets, ConfigMap contents, pod logs, workload
-data, pod or namespace names, node hostnames, user or service account
-identities, proxy URLs, egress or firewall rule contents, or internal
-hostnames of any kind. This holds on error paths too: unreadable sections
-carry a fixed message, and unexpected error text passes through a redaction
-step that strips identities, URLs and IP addresses before it can reach the
-output.
+The collector does not request Secrets, ConfigMap contents or pod logs. Its
+projections omit workload names, node addresses, binding subjects, proxy URLs
+and egress rule contents. It intentionally retains the platform configuration
+names, labels and CIDRs listed above. Those values can themselves be identifying,
+so review the output before sharing it; this is not a blanket anonymization
+guarantee.
+
+CLI read failures and section transformation errors use fixed diagnostic
+categories rather than embedding raw CLI or jq error text. Operators investigate
+details locally under their own target authority. This avoids relying on
+incomplete pattern-based redaction.
 
 ## Auditing the script
 
@@ -95,11 +99,39 @@ FIPS state then has to be established some other way.
 | `ok` | Collected. See `data`. |
 | `forbidden` | The account lacks read permission. Cross-check `rbac_preflight`. |
 | `api_not_found` | The API does not exist on this cluster. Expected in some cases, for example `egressnetworkpolicies` on an OVN cluster. |
-| `error` | Anything else. `message` holds the CLI error, truncated and redacted. |
+| `error` | Anything else. `message` is a fixed read or transformation failure category, never raw diagnostics. |
 
 The field-level schema is in [SCHEMA.md](SCHEMA.md).
 
-## How it was tested
+## Development checks
+
+Linux x86_64 development requires Python 3.10+ and `make`:
+
+```bash
+make setup
+make verify
+```
+
+Setup downloads checksum-pinned ShellCheck 0.11.0 and jq 1.8.1 into ignored
+`.tools/`. It neither installs a cluster client nor loads a kubeconfig. Tool
+versions, official release URLs and hashes are in `tools/tools.lock.json`.
+ShellCheck is GPL-3.0 and jq uses its upstream MIT licensing; binaries are not
+vendored or uploaded as repository artifacts.
+
+On other development platforms, supply compatible installed tools explicitly:
+`make verify SHELLCHECK=/absolute/path/to/shellcheck JQ=/absolute/path/to/jq`.
+These overrides do not claim locked-tool equivalence. Runtime cluster collection
+still uses the operator-selected oc/kubectl and jq 1.6+ described above.
+
+Verification runs syntax checks, ShellCheck and synthetic unittest regressions.
+It never invokes a real cluster client or consumes `example-output.json`.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and
+[the readiness boundary and remaining debt](docs/READINESS.md).
+
+## Historical live testing
+
+The following describes the original 1.1.0 run, not live qualification of later
+changes. Offline source checks do not replace approved operator acceptance.
 
 The script has been run against a real OpenShift 4.22.1 cluster (OpenShift Local,
 OVN-Kubernetes, single node) configured with restricted Pod Security
